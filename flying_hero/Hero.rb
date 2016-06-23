@@ -2,11 +2,11 @@ require 'gosu'
 
 class Hero
 
-  attr_accessor :y, :x , :width, :height  
+  attr_accessor :y, :x , :width, :height
 
   def initialize
 
-    @sprites = Gosu::Image::load_tiles('assets/images/cat.png', 847/6, 87, tileable: false)
+    @sprites = Gosu::Image::load_tiles('assets/images/cat.png', 857/6, 87, tileable: false)
     @x = 10
     @y = 200
     @width = @sprites.first.width

@@ -2,18 +2,20 @@ require 'gosu'
 
 class Score
 
+  attr_accessor :score
+
   def initialize
     @score = 0
-    @image = Gosu::Image.from_text(self,"Score: #{@score}" , Gosu.default_font_name , 30)
+
   end
 
   def draw
+    @image = Gosu::Image.from_text(self,"Score: #{@score}", Gosu.default_font_name , 30)
     @image.draw(0,0,2)
   end
 
   def count(verificacion, type)
     if (verificacion == true && type == "Candy")
-      p 'candy ok'
       @score += 20
     elsif (verificacion == true && type == 'AsteroidSmall')
       @score -= 10

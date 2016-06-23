@@ -18,13 +18,17 @@ class FlyingItem
   end
 
   def collision(hero,window)
-    if (@y >= hero.y) && ((@y + @height) <= (hero.y + hero.height))
-      if (@x >= hero.x) && ((@x + @width) <= (hero.x + hero.width))
+    if ((@y + (@height / 2)) >= (hero.y + (hero.height / 2)) && (@y + (@height / 2)) <= (hero.y + hero.height))
+      if ((@x + @width) <= (hero.x + hero.width))
         @y = Random.rand(window.height - @height)
         @x = window.width - 100
         @collisionVer = true
-        p 'colision'
-        p @collisionVer
+      end
+    elsif ((@y + (@height / 2)) < (hero.y + (hero.height / 2)) && (@y + (@height / 2)) >= (hero.y))
+      if ((@x + @width) <= (hero.x + hero.width))
+        @y = Random.rand(window.height - @height)
+        @x = window.width - 100
+        @collisionVer = true
       end
     end
   end

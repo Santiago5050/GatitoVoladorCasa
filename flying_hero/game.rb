@@ -16,6 +16,8 @@ class Game < Gosu::Window
     @score = Score.new
   end
 
+
+
   def draw
     @background.draw
     @hero.draw
@@ -45,9 +47,7 @@ class Game < Gosu::Window
     @candy.collision(@hero, self)
 
      if @candy.collisionVer == true
-       p 'entro al if'
        @score.count(true, 'Candy')
-       @score.draw
        @candy.collisionVer = false
      end
 
