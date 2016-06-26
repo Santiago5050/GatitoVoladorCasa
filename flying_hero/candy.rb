@@ -7,13 +7,16 @@ class Candy < FlyingItem
     'assets/images/candy.png'
   end
 
-  def move!(window)
-    if @x > 0
-      @x -= 10
-    else
-      @x = window.width - 100
-      @y = Random.rand(window.height - @height)
-    end
+  def self.name
+    'Candy'
+  end
 
+  def move!(window)
+    if @x >= ( 0 - @width)
+      @x -= 10
+      if @x <= (0 - @width)
+        @complete = true
+      end
+    end
   end
 end

@@ -3,4 +3,5 @@ require 'FlyingItem'
 
 class Asteroid < FlyingItem
 
+  
 end
