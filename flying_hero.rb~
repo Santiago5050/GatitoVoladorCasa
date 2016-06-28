@@ -1,0 +1,10 @@
+require_relative 'flying_hero/game'
+require_relative 'flying_hero/fin_de_partida'
+
+game = Game.new
+game.show
+end_game = FinPartida.new
+end_game.show
+game = Game.new
+game.show
+

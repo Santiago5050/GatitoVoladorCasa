@@ -9,19 +9,26 @@ require_relative 'asteroid_big'
 require 'gosu'
 
 class Game < Gosu::Window
-  def initialize
-    super(900, 550, fullscreen: false)
 
+  attr_accessor :score_end, :estatus
+
+  def initialize
+    super(900, 550, fullscreen: true)
     self.caption = 'Flying hero!'
+
+    @song = Gosu::Song.new('assets/songs/background_song.ogg')
+    @song.play(looping = true)
+
     @background = Background.new
     @hero = Hero.new
     @candy = Candy.new(self)
     @score = Score.new
     @asteroid_small = AsteroidSmall.new(self)
-    @level = Level.new
     @asteroid_big = AsteroidBig.new(self)
-    @new = 1
     @fly_item = @candy
+
+    @new = 1
+    @level = Level.new
   end
 
 
@@ -35,7 +42,6 @@ class Game < Gosu::Window
 
       number = Random.rand(4)
 
-      p number
       if (number ==  0 || number == 3)
         @fly_item = @candy
         @fly_item.ready?(self)
@@ -60,7 +66,10 @@ class Game < Gosu::Window
 
   def button_down(id)
     if id == Gosu::KbEscape
-      close
+      @score_end = @score.score
+      @song.stop
+      @estatus = 'end_game'
+      self.close
     end
   end
 
@@ -82,6 +91,12 @@ class Game < Gosu::Window
      if @fly_item.collisionVer == true #Si el objeto colisiona con el Heroe
        @score.count(true, @fly_item.class.name) #Se cuenta en el score
        @fly_item.collisionVer = false
+     end
+
+     if @score.score < 0
+       @song.stop
+       @estatus = 'lose'
+       self.close
      end
 
     end
